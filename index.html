@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PERSISTE capacita a docentes y estudiantes de escuelas técnicas para relevar, documentar y diagnosticar su equipamiento, con un asistente de IA local que ayuda a decidir qué reparar, conservar o comprar.">
     <title>PERSISTE | Programa Escolar de Reutilización e Innovación</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- CABECERA RESPONSIVA -->
     <header>
-        <img src="assets/img/cabecera-persiste.jpg" 
-             alt="PERSISTE: Lo viejo funciona - Programa de reutilización tecnológica escolar" 
+        <img src="assets/img/cabecera-persiste.jpg"
+             alt="PERSISTE: Lo viejo funciona - Programa de reutilización tecnológica escolar"
              class="logo-header">
     </header>
 
     <!-- MENÚ SIMPLE -->
-    <nav>
-        <a href="index.html">Inicio</a>
+    <nav aria-label="Principal">
+        <a href="index.html" aria-current="page">Inicio</a>
         <a href="gestion.html">Gestión</a>
         <a href="tecnica.html">Técnica</a>
         <a href="ia-local.html">IA Local</a>
@@ -27,9 +28,55 @@
     <main class="container">
         <section class="intro">
             <h1>Lo viejo funciona</h1>
-            <p>PERSISTE convierte el equipamiento envejecido de las escuelas técnicas en conocimiento institucional, documentación viva y criterios de compra responsables. Utilizamos investigación-acción docente y aprendizaje por proyectos estudiantil aplicados a un desafío real.</p>
+            <p>PERSISTE capacita a docentes y estudiantes para relevar, documentar y diagnosticar el equipamiento tecnológico de su escuela, y suma un asistente de IA local que usa esa información para ayudar a decidir qué reparar, qué conservar y qué comprar.</p>
+            <p>Lo hacemos con investigación-acción docente y aprendizaje por proyectos estudiantil, aplicados a un desafío real.</p>
         </section>
 
+        <!-- QUÉ OFRECE EL PROGRAMA -->
+        <section class="ofrece" aria-labelledby="titulo-ofrece">
+            <h2 id="titulo-ofrece">Qué ofrece PERSISTE</h2>
+
+            <div class="ofertas">
+                <details class="oferta">
+                    <summary>
+                        <h3>Capacitamos</h3>
+                        <span class="resumen">Docentes y estudiantes que aprenden resolviendo problemas reales.</span>
+                    </summary>
+                    <div class="detalle">
+                        <p>Los docentes se forman en servicio con investigación-acción: ciclos de diagnóstico, prueba y reflexión sobre la gestión tecnológica de su propia escuela.</p>
+                        <p>Los estudiantes aprenden por proyectos: instalan, configuran, resuelven y documentan equipos reales, en lugar de hacer ejercicios simulados.</p>
+                        <p>Se trabaja entre 4 y 6 horas semanales dentro de espacios curriculares existentes, y las cohortes avanzadas forman a las siguientes.</p>
+                    </div>
+                </details>
+
+                <details class="oferta">
+                    <summary>
+                        <h3>Relevamos y diagnosticamos</h3>
+                        <span class="resumen">Un inventario con el estado real del equipamiento, escuela por escuela.</span>
+                    </summary>
+                    <div class="detalle">
+                        <p>Cada escuela releva su equipamiento (computadoras, impresoras, proyectores, redes) y arma fichas con marca, modelo, estado, historial, procedimientos y fallas frecuentes. Todo se verifica en el equipo real.</p>
+                        <p>Con el tiempo, las escuelas pueden compartir lo documentado y formar una red que compare situaciones y soluciones, y que le dé a la gestión pública datos que hoy no existen: estado real, costos de soporte externo y vida útil de los equipos.</p>
+                    </div>
+                </details>
+
+                <details class="oferta">
+                    <summary>
+                        <h3>Una IA local que ayuda a decidir</h3>
+                        <span class="resumen">Preguntale a la documentación de tu escuela.</span>
+                    </summary>
+                    <div class="detalle">
+                        <p>Toda esa información alimenta un asistente de IA que funciona en una computadora de la propia escuela, sin internet ni servicios de terceros. Permite consultar en lenguaje natural (“¿cómo se configura tal impresora?”) y responde citando la ficha de donde sacó la información.</p>
+                        <p>Con seis criterios de compra responsable (compatibilidad con software libre, reparabilidad, consumo, costo total, obsolescencia y autonomía), ayuda a armar informes para decidir.</p>
+                        <p>La decisión la toma siempre una persona: toda ficha se revisa antes de entrar al archivo.</p>
+                    </div>
+                </details>
+            </div>
+
+            <p class="resultado">El resultado: conocimiento institucional que no se pierde, documentación viva y criterios de compra responsables.</p>
+        </section>
+
+        <!-- PERFILES -->
         <section class="perfiles">
             <article class="card">
                 <h2>Soy Autoridad o Directivo</h2>
@@ -49,7 +96,7 @@
     <footer>
         <p><strong>PERSISTE</strong> es un proyecto de software libre y educación técnica.</p>
         <p>Licencia: Creative Commons BY-SA 4.0</p>
-        <p>Este sitio forma parte del ecosistema de <a href="https://aulaslibres.ar" target="_blank" rel="noopener">Aulas Libres</a>. 
+        <p>Este sitio forma parte del ecosistema de <a href="https://aulaslibres.ar" target="_blank" rel="noopener">Aulas Libres</a>.
            Visitá <strong>aulaslibres.ar</strong> para más proyectos educativos y recursos abiertos.</p>
         <p>Código fuente disponible en <a href="https://github.com/tu-usuario/persiste" target="_blank" rel="noopener">GitHub</a>.</p>
     </footer>
