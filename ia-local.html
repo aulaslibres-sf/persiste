@@ -3,78 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA Local | Componente Técnico PERSISTE</title>
+    <meta name="description" content="Camino de ensayos para que cada escuela encuentre el asistente de IA local que mejor funcione con el equipo que ya tiene, sin gastos superfluos.">
+    <title>IA Local | Camino de ensayos | PERSISTE</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Recorrido visual del camino de ensayos.
+           Puede moverse a css/style.css cuando se quiera reutilizar en otras páginas. */
+        .camino { list-style: none; counter-reset: paso; margin: 2rem 0; padding: 0; }
+        .camino > li { position: relative; counter-increment: paso; padding: 0 0 2rem 3.6rem; }
+        .camino > li::before {
+            content: counter(paso);
+            position: absolute; left: 0; top: 0;
+            width: 2.5rem; height: 2.5rem; border-radius: 50%;
+            background: var(--primary); color: #fff; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .camino > li::after {
+            content: ""; position: absolute; left: 1.2rem; top: 2.7rem; bottom: 0.2rem;
+            width: 3px; background: var(--accent);
+        }
+        .camino > li:last-child { padding-bottom: 0; }
+        .camino > li:last-child::after { display: none; }
+        .camino h3 { margin: 0.25rem 0 0.5rem; font-size: 1.2rem; }
+        .camino .anotar {
+            background: var(--light-bg); border-left: 4px solid var(--accent);
+            padding: 0.6rem 0.9rem; font-size: 0.95rem; margin: 0.75rem 0 0;
+        }
+        .salidas {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem; margin: 0.75rem 0 0;
+        }
+        .salida {
+            border: 1px solid var(--border); border-top: 4px solid var(--accent);
+            border-radius: 6px; padding: 0.8rem 1rem; background: #fff; font-size: 0.95rem;
+        }
+        .salida strong { display: block; color: var(--primary); margin-bottom: 0.3rem; }
+        .salida p { margin: 0; }
+        .salida.vuelta { border-top-color: #b85c00; }
+        .salida.pausa { border-top-color: var(--primary); }
+        .ficha td { height: 2.4rem; }
+        .ficha-vacia td { min-width: 7rem; }
+        @media (max-width: 600px) {
+            .camino > li { padding-left: 3.1rem; }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <img src="assets/img/cabecera-persiste.jpg" 
-             alt="PERSISTE: Lo viejo funciona" 
+        <img src="assets/img/cabecera-persiste.jpg"
+             alt="PERSISTE: Lo viejo funciona"
              class="logo-header">
     </header>
-    <nav>
+    <nav aria-label="Principal">
         <a href="index.html">Inicio</a>
         <a href="gestion.html">Gestión</a>
         <a href="tecnica.html">Técnica</a>
-        <a href="ia-local.html">IA Local</a>
+        <a href="ia-local.html" aria-current="page">IA Local</a>
         <a href="recursos.html">Recursos</a>
     </nav>
 
     <main class="container">
-        <h1>Anexo VIII: Recomendaciones para el Componente de IA Local</h1>
-        <p>Resultados de benchmarking y especificaciones técnicas para el despliegue piloto. El sistema funciona íntegramente en una computadora de la escuela, sin requerir conexión a internet ni suscripciones externas.</p>
+        <h1>Anexo VIII: camino de ensayos para el componente de IA local</h1>
 
-        <h2>8.3 Resultados del Benchmarking</h2>
+        <p>Este anexo no presenta un modelo recomendado: propone un camino de ensayos para que cada escuela encuentre el asistente de IA local que mejor funcione con el equipo que ya tiene. Cada institución parte de su hardware, prueba, registra lo que observa y decide con esa evidencia. Si el ensayo muestra que el equipo disponible alcanza, no hay gasto; si no alcanza, el registro justifica qué mejorar y por qué.</p>
+        <p>Antes de escribirlo se hicieron ensayos exploratorios en una notebook de 4 GB de RAM y en una PC de escritorio de 16 GB. Sirvieron para comprobar que el camino puede recorrerse, no para fijar un resultado que las escuelas deban replicar. Probar, registrar y compartir son prácticas que la escuela rara vez ejercita; este camino las incorpora como parte del programa.</p>
+        <p>Una vez instalado, el sistema funciona íntegramente en una computadora de la escuela, sin conexión a internet ni suscripciones externas. La descarga inicial de los programas y de cada modelo sí requiere conexión, una sola vez.</p>
+
+        <h2>8.1 El camino, paso a paso</h2>
+
+        <ol class="camino">
+            <li>
+                <h3>Conocé tu equipo</h3>
+                <p>Antes de elegir nada, averiguá qué tenés. Cerrá el navegador y los programas que no uses, porque compiten por la memoria, y corré estos comandos en una terminal:</p>
+<pre><code>lscpu | grep "Model name"
+free -h
+df -h /
+lsb_release -a</code></pre>
+                <p class="anotar"><strong>Anotá en la ficha:</strong> procesador, memoria total y libre, espacio libre en disco y sistema operativo.</p>
+            </li>
+
+            <li>
+                <h3>Elegí candidatos livianos</h3>
+                <p>Buscá modelos de licencia libre compatibles con Ollama (el catálogo está en <a href="https://ollama.com/library" target="_blank" rel="noopener">ollama.com/library</a>). Como regla práctica, el modelo debe ocupar bastante menos que la memoria libre, porque el sistema, la interfaz y los documentos también necesitan lugar. Empezá por el más liviano y subí de a uno.</p>
+<pre><code>ollama pull &lt;nombre-del-modelo&gt;
+ollama list</code></pre>
+                <p class="anotar"><strong>Anotá en la ficha:</strong> nombre del modelo y su tamaño (lo muestra <code>ollama list</code>).</p>
+            </li>
+
+            <li>
+                <h3>Ejecutá el ensayo con el Prompt Oficial</h3>
+                <p>Usá el mismo prompt (sección 8.3) con el mismo equipo a evaluar en todos los candidatos, para que los resultados sean comparables. Elegí un equipo real de tu escuela, por ejemplo una impresora.</p>
+<pre><code>ollama run &lt;nombre-del-modelo&gt; --verbose</code></pre>
+                <p>Al terminar, <code>--verbose</code> muestra las estadísticas de tiempo; si preferís, cronometrá con un reloj. Repetí la prueba al menos una vez más: la primera carga del modelo suele ser más lenta.</p>
+                <p class="anotar"><strong>Anotá en la ficha:</strong> tiempo de respuesta de cada repetición.</p>
+            </li>
+
+            <li>
+                <h3>Evaluá la respuesta</h3>
+                <p>Leé lo que el modelo escribió y respondé cuatro preguntas:</p>
+                <ul>
+                    <li>¿Completó los seis criterios que pedía el prompt?</li>
+                    <li>¿Los datos se pueden verificar (nombres de paquetes, comandos, direcciones web, precios)?</li>
+                    <li>¿Está escrito con claridad para un estudiante?</li>
+                    <li>¿El tiempo de espera es tolerable para trabajar en el aula?</li>
+                </ul>
+                <p>Verificá los datos contra fuentes oficiales o contra el equipo real. En ensayos previos aparecieron nombres de paquetes, direcciones web y precios inventados: por eso toda ficha pasa por revisión humana antes de entrar al Archivo Técnico Institucional.</p>
+                <p class="anotar"><strong>Anotá en la ficha:</strong> si completó los seis criterios y qué errores detectaste.</p>
+            </li>
+
+            <li>
+                <h3>Decidí con lo que registraste</h3>
+                <p>Cada ensayo termina en una de tres salidas:</p>
+                <div class="salidas">
+                    <div class="salida">
+                        <strong>Sirve</strong>
+                        <p>Cargá la documentación de la escuela en AnythingLLM y seguí con el flujo de trabajo del Módulo 1.</p>
+                    </div>
+                    <div class="salida vuelta">
+                        <strong>Casi sirve</strong>
+                        <p>Volvé al paso 2: probá otro candidato o ajustá la configuración.</p>
+                    </div>
+                    <div class="salida pausa">
+                        <strong>Ninguno sirve</strong>
+                        <p>Dejá la ficha completa. Recién ahí se evalúa una mejora de hardware (sección 8.6).</p>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <h3>Compartí tu ficha</h3>
+                <p>Publicá la ficha en el repositorio del programa, con licencia abierta. Otra escuela con un equipo parecido llegará más rápido a su propia decisión, y el conjunto de fichas se vuelve evidencia comparable entre instituciones.</p>
+            </li>
+        </ol>
+
+        <h2>8.2 Ficha de registro</h2>
+        <p>Una ficha por equipo, con una fila por cada modelo ensayado. Copiala o imprimila para trabajar en el aula.</p>
+
+        <h3>Datos del equipo</h3>
         <div class="table-responsive">
-            <table>
+            <table class="ficha">
                 <thead>
-                    <tr>
-                        <th>Modelo</th>
-                        <th>Tamaño</th>
-                        <th>Tiempo inferencia</th>
-                        <th>Precisión técnica</th>
-                        <th>Estructura PERSISTE</th>
-                        <th>Veredicto</th>
-                    </tr>
+                    <tr><th>Campo</th><th>Cómo obtenerlo</th><th>Anotar</th></tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Qwen 2.5 3B</strong></td>
-                        <td>1,9 GB</td>
-                        <td>1m 18s</td>
-                        <td>Alta</td>
-                        <td>Excelente</td>
-                        <td><span class="badge success">Seleccionado</span></td>
-                    </tr>
-                    <tr>
-                        <td>Llama 3.1 8B</td>
-                        <td>4,9 GB</td>
-                        <td>1m 46s</td>
-                        <td>Baja</td>
-                        <td>Mala</td>
-                        <td><span class="badge danger">Descartado</span></td>
-                    </tr>
-                    <tr>
-                        <td>Mistral 7B</td>
-                        <td>4,4 GB</td>
-                        <td>2m 26s</td>
-                        <td>Media-alta</td>
-                        <td>Media</td>
-                        <td><span class="badge warning">Descartado (lento)</span></td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek Coder</td>
-                        <td>776 MB</td>
-                        <td>0m 49s</td>
-                        <td>Peligrosa</td>
-                        <td>Mala</td>
-                        <td><span class="badge danger">Descartado</span></td>
-                    </tr>
+                    <tr><td>Institución, fecha y responsable</td><td>Datos propios</td><td></td></tr>
+                    <tr><td>Procesador</td><td><code>lscpu | grep "Model name"</code></td><td></td></tr>
+                    <tr><td>Memoria RAM total y libre</td><td><code>free -h</code></td><td></td></tr>
+                    <tr><td>Espacio libre en disco</td><td><code>df -h /</code></td><td></td></tr>
+                    <tr><td>Sistema operativo</td><td><code>lsb_release -a</code></td><td></td></tr>
+                    <tr><td>Versión de Ollama</td><td><code>ollama --version</code></td><td></td></tr>
                 </tbody>
             </table>
         </div>
 
-        <h2>8.5 Configuración Estándar para Despliegue Piloto</h2>
+        <h3>Ensayos realizados</h3>
+        <div class="table-responsive">
+            <table class="ficha ficha-vacia">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Tamaño</th>
+                        <th>Tiempo de respuesta</th>
+                        <th>¿Completó los seis criterios?</th>
+                        <th>Errores detectados</th>
+                        <th>Decisión</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>8.3 Prompt Oficial PERSISTE</h2>
+        <p>Es la consulta estándar de los ensayos. Al ser la misma para todos los modelos, permite compararlos. Una vez validado, se incorpora al Manual de Incorporación del Módulo 3.</p>
+        <pre><code>Actúa como asistente técnico del programa PERSISTE. Tu tarea es redactar una ficha técnica para un equipo que debe ser evaluado según los Criterios de Adquisición Tecnológica Responsable. Debes responder abordando: (1) Compatibilidad con software libre, (2) Durabilidad y reparabilidad, (3) Consumo energético, (4) Costo total de propiedad, (5) Obsolescencia programada, (6) Autonomía tecnológica. Equipo a evaluar: [descripción del equipo].</code></pre>
+        <p>Este prompt funciona como instrucción explícita: incluye los seis criterios en la propia consulta. Una vez elegido el modelo, la herramienta de recuperación documental (RAG) permite que el asistente cite la documentación que cada escuela cargó.</p>
+
+        <h2>8.4 Qué se aprende además del modelo</h2>
+        <p>El resultado del ensayo es una decisión, pero el valor mayor está en el hábito: medir antes de comprar, anotar lo observado, desconfiar de una respuesta hasta verificarla y compartir lo aprendido. Son las mismas prácticas que el programa propone para el resto del equipamiento de la escuela.</p>
+
+        <h2>8.5 Configuración de referencia</h2>
+        <p>Es un punto de partida para el primer ensayo, no una norma. El modelo se define con el camino de la sección 8.1.</p>
         <div class="table-responsive">
             <table>
                 <thead>
@@ -92,8 +204,8 @@
                     </tr>
                     <tr>
                         <td>Modelo de lenguaje</td>
-                        <td>qwen2.5:3b</td>
-                        <td>Mejor relación precisión/velocidad/consumo; validado en pruebas.</td>
+                        <td>El que resulte del ensayo</td>
+                        <td>Depende del equipo de cada escuela.</td>
                     </tr>
                     <tr>
                         <td>Interfaz de usuario</td>
@@ -109,8 +221,14 @@
             </table>
         </div>
 
-        <h2>8.2.2 Prompt Oficial PERSISTE</h2>
-        <pre><code>Actúa como asistente técnico del programa PERSISTE. Tu tarea es redactar una ficha técnica para un equipo que debe ser evaluado según los Criterios de Adquisición Tecnológica Responsable. Debes responder abordando: (1) Compatibilidad con software libre, (2) Durabilidad y reparabilidad, (3) Consumo energético, (4) Costo total de propiedad, (5) Obsolescencia programada, (6) Autonomía tecnológica. Equipo a evaluar: [descripción del equipo].</code></pre>
+        <h2>8.6 Cuándo invertir en hardware</h2>
+        <p>La inversión se decide con las fichas a la vista, no antes. Algunas señales orientativas de que el equipo disponible ya no alcanza:</p>
+        <ul>
+            <li>El tiempo de respuesta supera de forma sostenida lo que el grupo puede tolerar en el aula.</li>
+            <li>El uso es intenso (el programa toma como orientación 20 o más consultas semanales).</li>
+            <li>Se necesita consultar al mismo tiempo desde varias computadoras.</li>
+        </ul>
+        <p>En ese caso, las fichas muestran qué se probó, qué funcionó y qué faltó, y eso fundamenta qué mejorar y por qué.</p>
     </main>
 
     <footer>
