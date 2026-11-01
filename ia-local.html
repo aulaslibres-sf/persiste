@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Local | Componente Técnico PERSISTE</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/img/cabecera-persiste.jpg" 
+             alt="PERSISTE: Lo viejo funciona" 
+             class="logo-header">
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="gestion.html">Gestión</a>
+        <a href="tecnica.html">Técnica</a>
+        <a href="ia-local.html">IA Local</a>
+        <a href="recursos.html">Recursos</a>
+    </nav>
+
+    <main class="container">
+        <h1>Anexo VIII: Recomendaciones para el Componente de IA Local</h1>
+        <p>Resultados de benchmarking y especificaciones técnicas para el despliegue piloto. El sistema funciona íntegramente en una computadora de la escuela, sin requerir conexión a internet ni suscripciones externas.</p>
+
+        <h2>8.3 Resultados del Benchmarking</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Tamaño</th>
+                        <th>Tiempo inferencia</th>
+                        <th>Precisión técnica</th>
+                        <th>Estructura PERSISTE</th>
+                        <th>Veredicto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Qwen 2.5 3B</strong></td>
+                        <td>1,9 GB</td>
+                        <td>1m 18s</td>
+                        <td>Alta</td>
+                        <td>Excelente</td>
+                        <td><span class="badge success">Seleccionado</span></td>
+                    </tr>
+                    <tr>
+                        <td>Llama 3.1 8B</td>
+                        <td>4,9 GB</td>
+                        <td>1m 46s</td>
+                        <td>Baja</td>
+                        <td>Mala</td>
+                        <td><span class="badge danger">Descartado</span></td>
+                    </tr>
+                    <tr>
+                        <td>Mistral 7B</td>
+                        <td>4,4 GB</td>
+                        <td>2m 26s</td>
+                        <td>Media-alta</td>
+                        <td>Media</td>
+                        <td><span class="badge warning">Descartado (lento)</span></td>
+                    </tr>
+                    <tr>
+                        <td>DeepSeek Coder</td>
+                        <td>776 MB</td>
+                        <td>0m 49s</td>
+                        <td>Peligrosa</td>
+                        <td>Mala</td>
+                        <td><span class="badge danger">Descartado</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>8.5 Configuración Estándar para Despliegue Piloto</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Especificación</th>
+                        <th>Justificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Motor de IA</td>
+                        <td>Ollama (última versión estable)</td>
+                        <td>Estándar de facto en software libre, ligero, sin dependencias de nube.</td>
+                    </tr>
+                    <tr>
+                        <td>Modelo de lenguaje</td>
+                        <td>qwen2.5:3b</td>
+                        <td>Mejor relación precisión/velocidad/consumo; validado en pruebas.</td>
+                    </tr>
+                    <tr>
+                        <td>Interfaz de usuario</td>
+                        <td>AnythingLLM Desktop</td>
+                        <td>Instalación de un clic, con RAG incorporado desde el inicio.</td>
+                    </tr>
+                    <tr>
+                        <td>Sistema operativo</td>
+                        <td>Ubuntu MATE / Windows</td>
+                        <td>Ubuntu MATE por bajo consumo; Windows como alternativa para reducir fricción.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>8.2.2 Prompt Oficial PERSISTE</h2>
+        <pre><code>Actúa como asistente técnico del programa PERSISTE. Tu tarea es redactar una ficha técnica para un equipo que debe ser evaluado según los Criterios de Adquisición Tecnológica Responsable. Debes responder abordando: (1) Compatibilidad con software libre, (2) Durabilidad y reparabilidad, (3) Consumo energético, (4) Costo total de propiedad, (5) Obsolescencia programada, (6) Autonomía tecnológica. Equipo a evaluar: [descripción del equipo].</code></pre>
+    </main>
+
+    <footer>
+        <p>Un proyecto de <a href="https://aulaslibres.ar" target="_blank" rel="noopener">Aulas Libres</a></p>
+    </footer>
+</body>
+</html>
