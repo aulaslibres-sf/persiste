@@ -128,6 +128,11 @@ h1, h2, h3 {
 
 p { margin-bottom: 1rem; }
 
+
+.intro .destacado {
+    color: var(--primary);
+}
+
 /* =========================================
    QUÉ OFRECE (CARDS EXPANDIBLES)
    Usan <details>/<summary>: funcionan sin JavaScript
